@@ -52,6 +52,7 @@
 
   $: staticStructure, fallbackJSON()
 
+  // Give a fallback default JSON Definition as a starting point
   function fallbackJSON ( ) {
     if (!staticStructure){
       builderStore.actions.updateProp("staticStructure", JSON.stringify(sampleJSON)) 
