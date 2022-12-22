@@ -8,19 +8,15 @@ The sections and items of the Navigation list, can be populated from a Data Sour
 or be statically defined using a JSON. 
 The component will prefill the JSON definition with an example to help you get started !
 
-<div style="display: flex; flex-direction: row;" >
-<div>
-    <img src="assets/sourceDataProvider.png" alt="source Data Provider" width="250px"/>
+<div style="display: flex; flex-direction: row;">
+        <img src="assets/sourceDataProvider.png" alt="source Data Provider" width="250px"/>
+        <img src="assets/sourceJSON.png" alt="source JSON " width="250px"/>
 </div>
-<div>
-    <img src="assets/sourceJSON.png" alt="source JSON " width="250px"/>
-</div>
-<div>
 
 
 You can use the On Click event with the components exposed context to react to user interactions
 
-![Alt text](assets/bindings.png)
+<img src="assets/bindings.png" alt="source JSON " width="250px"/>
 
 Find out more about [Budibase](https://github.com/Budibase/budibase).
 
