@@ -1,0 +1,79 @@
+{
+  "type": "component",
+  "metadata": {},
+  "schema": {
+    "name": "bb-component-SuperSideNavigation",
+    "friendlyName": "Super Side Navigation",
+    "description": "A Side Navigation / Item List component for Budibase.",
+    "icon": "RailLeft",
+    "settings": [
+      {
+        "type": "select",
+        "key": "structureSource",
+        "label": "Structure Source",
+        "options": [
+          { "label": "Data Provider", "value": "dataProvider" },
+          { "label": "JSON", "value": "json"}
+        ],
+        "defaultValue":"json"
+      },
+      {
+        "type": "text",
+        "key": "staticStructure",
+        "label": "JSON Structure",
+        "dependsOn": { "setting": "structureSource", "value": "json" }
+      },
+      {
+        "section": true,
+        "name": "Sections Settings",
+        "dependsOn": { "setting": "structureSource", "value": "dataProvider" },
+        "settings": [
+          {
+              "type": "dataProvider",
+              "key": "dataProvider",
+              "label": "Data Provider"   
+          },
+          {
+            "type": "field",
+            "label": "Section Key Column",
+            "key": "sectionColumnKey",
+            "required": true
+          },
+          {
+            "type": "field",
+            "label": "Section Value Column",
+            "key": "sectionColumnValue",
+            "required": true
+          },
+          {
+            "type": "field",
+            "label": "Item Column",
+            "key": "itemColumn",
+            "info": "Must be a Relationship Field",
+            "required": true
+          }
+        ]
+      },
+      {
+        "section": true,
+        "name": "On Item Click",
+        "settings": [
+          {
+            "type": "event",
+            "key": "onItemClick",
+            "context": [
+              {
+                "label": "Item Key",
+                "key": "itemKey"
+              },
+              {
+                "label": "Item Value",
+                "key": "itemValue"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
