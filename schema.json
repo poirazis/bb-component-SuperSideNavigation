@@ -6,6 +6,7 @@
     "friendlyName": "Super Side Navigation",
     "description": "A Side Navigation / Item List component for Budibase.",
     "icon": "RailLeft",
+    "styles": [ "size", "background", "border", "shadow", "padding" ],
     "settings": [
       {
         "type": "select",
@@ -29,9 +30,9 @@
         "dependsOn": { "setting": "structureSource", "value": "dataProvider" },
         "settings": [
           {
-              "type": "dataProvider",
-              "key": "dataProvider",
-              "label": "Data Provider"   
+            "type": "dataProvider",
+            "key": "dataProvider",
+            "label": "Data Provider"   
           },
           {
             "type": "field",
@@ -53,6 +54,18 @@
             "required": true
           }
         ]
+      },
+      {
+        "type": "boolean",
+        "key": "collapsible",
+        "label": "Collapsible Sections",
+        "defaultValue": false
+      },
+      {
+        "type": "boolean",
+        "key": "hideEmpty",
+        "label": "Hide Empty Sections",
+        "defaultValue": false
       },
       {
         "section": true,
