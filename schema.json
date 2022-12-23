@@ -63,6 +63,13 @@
       },
       {
         "type": "boolean",
+        "key": "allCollapsed",
+        "label": "All Collapsed",
+        "defaultValue": false,
+        "dependsOn": "collapsible"
+      },
+      {
+        "type": "boolean",
         "key": "hideEmpty",
         "label": "Hide Empty Sections",
         "defaultValue": false

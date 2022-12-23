@@ -9,6 +9,7 @@
   export let sectionColumnValue
   export let itemColumn
   export let collapsible
+  export let allCollapsed
   export let hideEmpty
   export let onItemClick
 
@@ -54,6 +55,7 @@
   }
 
   $: staticStructure, fallbackJSON()
+  $: allCollapsed = (collapsible && allCollapsed)
 
   // Give a fallback default JSON Definition as a starting point
   function fallbackJSON ( ) {
@@ -115,7 +117,7 @@
       <ul class="spectrum-SideNav">
         {#each _structure.sections as _section}
           {#if !(hideEmpty && _section.items.length < 1) }
-          <Section value={_section.sectionValue} {collapsible}>
+          <Section value={_section.sectionValue} collapsed={allCollapsed} {collapsible}>
               {#each _section.items as _item }
               <!-- svelte-ignore a11y-click-events-have-key-events -->
               <li 

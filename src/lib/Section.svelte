@@ -18,5 +18,7 @@
     .collapsible:hover {
         cursor: pointer;
         color: var(--primaryColor);
+        transition: all 300ms;
+        border-bottom: 1px solid var(--primaryColor);
     }
 </style>
