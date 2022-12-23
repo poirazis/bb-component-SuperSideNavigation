@@ -1,5 +1,6 @@
 <script>
   import { getContext } from "svelte"
+  import Section from "./lib/Section.svelte";
 
   export let structureSource
   export let staticStructure
@@ -7,6 +8,8 @@
   export let sectionColumnKey
   export let sectionColumnValue
   export let itemColumn
+  export let collapsible
+  export let hideEmpty
   export let onItemClick
 
   const { styleable, builderStore } = getContext("sdk")
@@ -111,23 +114,20 @@
     <nav>
       <ul class="spectrum-SideNav">
         {#each _structure.sections as _section}
-          <li class="spectrum-SideNav-item">
-            <h2 class="spectrum-SideNav-heading">{_section.sectionValue}</h2>
-            {#if _section.items.length > 0}
-            <ul class="spectrum-SideNav" aria-labelledby="nav-heading-category-1">
+          {#if !(hideEmpty && _section.items.length < 1) }
+          <Section value={_section.sectionValue} {collapsible}>
               {#each _section.items as _item }
-                <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <li 
-                  class:is-selected={_item.itemKey === _selectedItemKey} 
-                  class="spectrum-SideNav-item"
-                  on:click={() => handleClick(_item.itemKey, _item.itemValue)}
-                  >
-                    <span class="spectrum-SideNav-itemLink"> {_item.itemValue} </span>
-                </li>
-              {/each}
-            </ul>
-            {/if}
-          </li>
+              <!-- svelte-ignore a11y-click-events-have-key-events -->
+              <li 
+                class:is-selected={_item.itemKey === _selectedItemKey} 
+                class="spectrum-SideNav-item"
+                on:click={() => handleClick(_item.itemKey, _item.itemValue)}
+                >
+                  <span class="spectrum-SideNav-itemLink"> {_item.itemValue} </span>
+              </li>
+            {/each} 
+          </Section>
+          {/if}
         {/each}
       </ul>
     </nav>
