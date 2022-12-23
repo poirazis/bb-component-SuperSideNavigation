@@ -1,7 +1,10 @@
 # Bb-component-SuperSideNavigation
 A Side Navigation / Item List component for Budibase.
 
-<img src="assets/preview.png" alt="preview" width="450px"/>
+<div style="display: flex; flex-direction: row;">
+        <img src="assets/collapsible.gif" alt="preview" width="450px"/>
+        <img src="assets/preview.png" alt="preview" width="450px"/>
+</div>
 # Description
 You can use the Super Side Navigation component to create Navigation panels.
 The sections and items of the Navigation list, can be populated from a Data Source,
