@@ -17,20 +17,20 @@
   const component = getContext("component")
   const loading = getContext("loading")
 
-  let _selectedItemKey
-  let _structure
+  let _selectedItemKey = -1
+  let _structure = { "sections": [] }
   let _error
 
   const sampleJSON = {
-    "sections": [
+    sections: [
       {
-        "sectionKey": 1,
-        "sectionValue": "Section 1",
-        "items": [
-          { "itemKey": 1, "itemValue": "Item 1" },
-          { "itemKey": 2, "itemValue": "Item 2" },
-          { "itemKey": 3, "itemValue": "Item 3" },
-          { "itemKey": 4, "itemValue": "Item 4" }
+        sectionKey: 1,
+        sectionValue: "Section 1",
+        items: [
+          { itemKey: 1, itemValue: "Item 1" },
+          { itemKey: 2, itemValue: "Item 2" },
+          { itemKey: 3, itemValue: "Item 3" },
+          { itemKey: 4, itemValue: "Item 4" }
         ]
       },
       {
@@ -73,21 +73,23 @@
       dataProvider.rows.forEach(element => {
         let _section = { "sectionKey": 0, "sectionValue": "", "items": [] }
         _section.sectionKey = element[sectionColumnKey];
-        _section.sectionValue = element[sectionColumnValue];
+        _section.sectionValue = element[sectionColumnValue] || "Select Value Column";
         
         // Iterate Ralationship Item
         if ( Array.isArray(element[itemColumn]))
           element[itemColumn].forEach(itemElement => {
-            _section.items.push ( {"itemKey": itemElement._id, "itemValue": itemElement.primaryDisplay  } );
+            _section.items.push ( {"itemKey": itemElement._id, "itemValue": itemElement.primaryDisplay } );
           });
 
         _structure.sections.push(_section);
+        console.log(_structure)
       })
 
     } else {
       _error = undefined
       try {
         _structure = JSON.parse(staticStructure)
+        console.log(_structure)
       } catch ( error ) 
       {
         _error = " Error Parsing JSON "
@@ -106,14 +108,15 @@
     : dataProvider?.rows
 
   $: populateStructure(rows, itemColumn, structureSource, staticStructure )
+
 </script>
 
 <div use:styleable={$component.styles}>
 
-  {#if _error }
+  {#if _error}
     <p class="error"> Error Parsing JSON Definition. You can set the property to empty to get a sample JSON Definition </p>
   {:else}
-    <nav>
+    <div>
       <ul class="spectrum-SideNav">
         {#each _structure.sections as _section}
           {#if !(hideEmpty && _section.items.length < 1) }
@@ -121,7 +124,7 @@
               {#each _section.items as _item }
               <!-- svelte-ignore a11y-click-events-have-key-events -->
               <li 
-                class:is-selected={_item.itemKey === _selectedItemKey} 
+                class:is-selected={_item.itemKey == _selectedItemKey} 
                 class="spectrum-SideNav-item"
                 on:click={() => handleClick(_item.itemKey, _item.itemValue)}
                 >
@@ -132,7 +135,7 @@
           {/if}
         {/each}
       </ul>
-    </nav>
+    </div>
   {/if} 
 
 </div>

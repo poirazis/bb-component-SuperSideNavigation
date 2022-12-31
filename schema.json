@@ -6,7 +6,7 @@
     "friendlyName": "Super Side Navigation",
     "description": "A Side Navigation / Item List component for Budibase.",
     "icon": "RailLeft",
-    "styles": [ "size", "background", "border", "shadow", "padding" ],
+    "styles": [ "size", "background", "border", "padding" ],
     "settings": [
       {
         "type": "select",
@@ -37,21 +37,18 @@
           {
             "type": "field",
             "label": "Section Key Column",
-            "key": "sectionColumnKey",
-            "required": true
+            "key": "sectionColumnKey"
           },
           {
             "type": "field",
             "label": "Section Value Column",
-            "key": "sectionColumnValue",
-            "required": true
+            "key": "sectionColumnValue"
           },
           {
             "type": "field",
             "label": "Item Column",
             "key": "itemColumn",
-            "info": "Must be a Relationship Field",
-            "required": true
+            "info": "Must be a Relationship Field"
           }
         ]
       },
