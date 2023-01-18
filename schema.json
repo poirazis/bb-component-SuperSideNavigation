@@ -49,6 +49,16 @@
             "label": "Item Column",
             "key": "itemColumn",
             "info": "Must be a Relationship Field"
+          },
+          {
+            "type": "select",
+            "key": "itemSorting",
+            "label" : "Sort Items",
+            "options" : [
+              { "label" : "Ascending", "value": "ascending" },
+              { "label" : "Descending", "value": "descending" },
+              { "label" : "No Sorting", "value": "unsorted" }
+            ]
           }
         ]
       },

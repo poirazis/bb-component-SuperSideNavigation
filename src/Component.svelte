@@ -8,6 +8,7 @@
   export let sectionColumnKey
   export let sectionColumnValue
   export let itemColumn
+  export let itemSorting
   export let collapsible
   export let allCollapsed
   export let hideEmpty
@@ -80,6 +81,12 @@
           element[itemColumn].forEach(itemElement => {
             _section.items.push ( {"itemKey": itemElement._id, "itemValue": itemElement.primaryDisplay } );
           });
+        
+        if (itemSorting == "ascending" )
+          _section.items.sort((a,b) => (a.itemValue > b.itemValue) ? 1 : ((b.itemValue > a.itemValue) ? -1 : 0))
+
+        if (itemSorting == "descending" )
+          _section.items.sort((a,b) => (a.itemValue < b.itemValue) ? 1 : ((b.itemValue < a.itemValue) ? -1 : 0))
 
         _structure.sections.push(_section);
         console.log(_structure)
@@ -89,7 +96,6 @@
       _error = undefined
       try {
         _structure = JSON.parse(staticStructure)
-        console.log(_structure)
       } catch ( error ) 
       {
         _error = " Error Parsing JSON "
