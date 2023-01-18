@@ -89,7 +89,6 @@
           _section.items.sort((a,b) => (a.itemValue < b.itemValue) ? 1 : ((b.itemValue < a.itemValue) ? -1 : 0))
 
         _structure.sections.push(_section);
-        console.log(_structure)
       })
 
     } else {
