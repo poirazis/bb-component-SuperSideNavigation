@@ -7,6 +7,8 @@
     "description": "A Side Navigation / Item List component for Budibase.",
     "icon": "RailLeft",
     "styles": [ "size", "background", "border", "padding" ],
+    "hasChildren": true,
+    "showEmptyState": false,
     "settings": [
       {
         "type": "select",
@@ -14,7 +16,8 @@
         "label": "Structure Source",
         "options": [
           { "label": "Data Provider", "value": "dataProvider" },
-          { "label": "JSON", "value": "json"}
+          { "label": "JSON", "value": "json"},
+          { "label": "Custom", "value": "custom"}
         ],
         "defaultValue":"json"
       },
@@ -67,6 +70,11 @@
         "key": "collapsible",
         "label": "Collapsible Sections",
         "defaultValue": false
+      },
+      {
+        "type": "options",
+        "key": "mainSections",
+        "label": "Main Sections"
       },
       {
         "type": "boolean",

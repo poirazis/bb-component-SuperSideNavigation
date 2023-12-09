@@ -1,5 +1,5 @@
 <script>
-  import { getContext } from "svelte"
+  import { getContext, setContext } from "svelte"
   import Section from "./lib/Section.svelte";
 
   export let structureSource
@@ -21,6 +21,9 @@
   let _selectedItemKey = -1
   let _structure = { "sections": [] }
   let _error
+
+  let superSideNavigator = {}
+  setContext ("superSideNagivator", superSideNavigator)
 
   const sampleJSON = {
     sections: [
@@ -114,12 +117,22 @@
 
   $: populateStructure(rows, itemColumn, structureSource, staticStructure )
 
+  function handleAddSection () {
+    let newSection = prompt ("Please enter new section name")
+    _structure.sections.push( { sectionKey: 100, sectionValue: newSection, items: [] } )
+    console.log(_structure, newSection)
+  }
+
 </script>
 
 <div use:styleable={$component.styles}>
 
   {#if _error}
     <p class="error"> Error Parsing JSON Definition. You can set the property to empty to get a sample JSON Definition </p>
+  {:else if structureSource == "custom"}
+    <ul class="spectrum-SideNav">
+      <slot />
+    </ul>
   {:else}
     <div>
       <ul class="spectrum-SideNav">
